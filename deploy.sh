@@ -21,5 +21,5 @@ git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 #  git push --set-upstream master:gh-pages gh-pages
-git push -f git@github.com:N3RDCLASH/Frontend-Mentor-TipCalculator.git master:gh-pages
+git push -f git@github.com:calvez/Frontend-Mentor-TipCalculator.git master:gh-pages
 cd -
