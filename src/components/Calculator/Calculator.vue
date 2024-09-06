@@ -346,7 +346,7 @@ export default {
 <style lang="postcss" scoped>
 table {
   @apply text-sm primary-font font-bold very-dark-cyan-text;
-  font-family: var(--font);
+  font-family: Helvetica;
   border-collapse: collapse;
   width: 100%;
 }
@@ -431,14 +431,14 @@ td {
 
 .label {
   @apply text-left text-sm my-2 primary-font font-bold dark-grayish-cyan-1-text;
-  font-family: var(--font);
+  font-family: Helvetica;
 }
 .label.error {
   color: hsl(13deg 33% 60%);
 }
 
 .title {
-  font-family: var(--font);
+  font-family: Helvetica;
   @apply text-sm primary-font font-bold very-dark-cyan-text;
 }
 
@@ -448,7 +448,7 @@ td {
 
 /* Utility Classes */
 .primary-font {
-  font-family: var(--font);
+  font-family: Helvetica;
 }
 .strong-cyan-text {
   color: var(--strong-cyan);
