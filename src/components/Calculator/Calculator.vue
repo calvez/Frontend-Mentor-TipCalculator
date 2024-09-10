@@ -1,53 +1,42 @@
 <template>
   <div class="calculator-container">
     <!--     -->
-    <div class="flex w-full">
-      <div class="calculator-column-left">
-        <div class="calculator-input-container">
-          <span class="label">Utalt összeg</span>
-          <input
-            class="calculator-input"
-            id="money"
-            type="text"
-            placeholder="0"
-            :value="formattedMoney"
-            @input="updateMoney"
-          />
-        </div>
-      </div>
-      <!-- s -->
-      <div class="calculator-column-right">
-        <div class="calculator-input-container">
-          <span class="label">Megtakarítás</span>
-          <div class="megtakaritas" :class="{ negative: megtakaritas < 0 }">
-            {{ megtakaritas }} Ft
-          </div>
-        </div>
-      </div>
+    <div class="calculator-input-container">
+      <span class="label">Utalt összeg</span>
+      <input
+        class="calculator-input"
+        id="money"
+        type="text"
+        placeholder="0"
+        :value="formattedMoney"
+        @input="updateMoney"
+      />
     </div>
     <!-- s -->
     <div class="calculator-row">
-      <span class="title">Tranzakciós illeték kalkulátor</span>
-      <table class="w-full" id="firstTable">
+      <table id="firstTable">
         <tbody>
+          <tr>
+            <td><span class="title">Tranzakciós illeték kalkulátor</span></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><span class="title">Bank ktg. Kalkulátor</span></td>
+            <td colspan="3">
+              <span class="title">Vállalkozást terhelő ktg össz</span>
+            </td>
+            <td><span class="title">Ibanfirst</span></td>
+          </tr>
           <tr>
             <td></td>
             <td colspan="2">2013.01.01</td>
             <td colspan="2">2024.08.01</td>
-          </tr>
-          <tr>
             <td></td>
-            <td>0,60%</td>
-            <td>Maximum</td>
-            <td>0,90%</td>
-            <td>Maximum</td>
-          </tr>
-          <tr>
-            <td>Kp felvét</td>
-            <td>{{ tranzIlletekKpElso }} Ft</td>
-            <td>{{ tranzIlletekKpElso }} Ft</td>
-            <td>{{ tranzIlletekKpMasodik }} Ft</td>
-            <td>{{ tranzIlletekKpMasodik }} Ft</td>
+            <td>Előtt</td>
+            <td>2024.08.01</td>
+            <td>Után</td>
+            <td>2024.08.01</td>
           </tr>
           <tr>
             <td></td>
@@ -58,6 +47,11 @@
             <td>10 000 Ft</td>
             <td>0,45%</td>
             <td>20 000 Ft</td>
+            <td>0,03%</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
             <td>Banki átutalás</td>
@@ -65,12 +59,22 @@
             <td>{{ tranzIlletekBankiMax }} Ft</td>
             <td>{{ tranzIlletekBankimasodik }} Ft</td>
             <td>{{ tranzIlletekBankiMaxMasodik }} Ft</td>
+            <td>{{ bankKtgUtalas }} Ft</td>
+            <td>{{ valalkozasBankiElottMasodik }} Ft</td>
+            <td></td>
+            <td>{{ valalkozasBankiUtanMasodik }} FT</td>
+            <td>5000 Ft</td>
           </tr>
           <tr>
             <td>Illetékmentességi határ</td>
             <td>20 000 Ft</td>
             <td></td>
             <td>50 000 Ft</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
           </tr>
           <tr>
@@ -82,6 +86,11 @@
             <td></td>
             <td>0,45%</td>
             <td>20 000 Ft</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
           <tr>
             <td></td>
@@ -89,6 +98,11 @@
             <td></td>
             <td>{{ tranzIlletekBankimasodik }} Ft</td>
             <td>{{ tranzIlletekBankiMaxMasodik }} Ft</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>{{ tranzIlletekBankiMaxMasodik }} Ft</td>
+            <td></td>
           </tr>
           <tr>
             <td></td>
@@ -96,110 +110,21 @@
             <td></td>
             <td>50 000 Ft</td>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
     </div>
     <!-- s -->
-    <div class="flex w-full">
-      <div class="calculator-column-left">
-        <div class="calculator-input-container">
-          <span class="title">Bank ktg. Kalkulátor</span>
-          <table id="secondTable">
-            <tr>
-              <td></td>
-              <td>1,00%</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Kp felvét</td>
-              <td>{{ bankKtgKp }} Ft</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>0,03%</td>
-            </tr>
-            <tr>
-              <td>Banki utalás</td>
-              <td>{{ bankKtgUtalas }} Ft</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Konverziós illeték</td>
-              <td></td>
-            </tr>
-          </table>
-        </div>
+    <div class="calculator-input-container">
+      <span class="label">Megtakarítás</span>
+      <div class="megtakaritas" :class="{ negative: megtakaritas < 0 }">
+        {{ megtakaritas }} Ft
       </div>
-      <!-- s -->
-      <div class="calculator-column-right">
-        <div class="calculator-input-container">
-          <span class="title">Vállalkozást terhelő ktg össz</span>
-          <table id="thirdTable">
-            <tr>
-              <td>Előtt</td>
-              <td>2024.08.01</td>
-              <td>Után</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ valalkozasKpElottElso }} Ft</td>
-              <td></td>
-              <td>{{ valalkozasKpUtánElso }} Ft</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>.</td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>{{ valalkozasKpElottMasodik }} Ft</td>
-              <td></td>
-              <td>{{ valalkozasKpUtanMasodik }} FT</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td>{{ tranzIlletekBankiMaxMasodik }} Ft</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-    </div>
-    <div class="calculator-row">
-      <span class="title">Ibanfirst</span>
-      <table class="w-full">
-        <tbody>
-          <tr>
-            <td>2024.08.01</td>
-            <td>5 000 Ft</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </template>
@@ -211,7 +136,7 @@ export default {
   },
   data() {
     return {
-      money: 3000000,
+      money: 80000000,
       save: 0,
     };
   },
@@ -228,18 +153,6 @@ export default {
   computed: {
     formattedMoney() {
       return this.money.toLocaleString("hu-HU");
-    },
-    tranzIlletekKpElso() {
-      const calculation = this.money * 0.006;
-      return isNaN(calculation) || calculation === Infinity
-        ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
-        : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
-    },
-    tranzIlletekKpMasodik() {
-      const calculation = this.money * 0.009;
-      return isNaN(calculation) || calculation === Infinity
-        ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
-        : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
     },
     tranzIlletekBankiElso() {
       const calculation = this.money * 0.003;
@@ -281,25 +194,13 @@ export default {
         ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
         : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
     },
-    bankKtgKp() {
-      const calculation = this.money * 0.01;
-      return isNaN(calculation) || calculation === Infinity
-        ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
-        : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
-    },
     bankKtgUtalas() {
       const calculation = this.money * 0.0003;
       return isNaN(calculation) || calculation === Infinity
         ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
         : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
     },
-    valalkozasKpElottElso() {
-      const calculation = this.money * 0.006 + this.money * 0.01;
-      return isNaN(calculation) || calculation === Infinity
-        ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
-        : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
-    },
-    valalkozasKpElottMasodik() {
+    valalkozasBankiElottMasodik() {
       let tranz = 0;
 
       if (this.tranzIlletekBankiElso < 10000) {
@@ -313,13 +214,7 @@ export default {
         ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
         : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
     },
-    valalkozasKpUtánElso() {
-      const calculation = this.money * 0.009 + this.money * 0.01;
-      return isNaN(calculation) || calculation === Infinity
-        ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
-        : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
-    },
-    valalkozasKpUtanMasodik() {
+    valalkozasBankiUtanMasodik() {
       let tranz = 0;
 
       if (parseInt(this.tranzIlletekBankimasodik.replace(/\s+/g, "")) < 20000) {
@@ -334,7 +229,7 @@ export default {
     },
     megtakaritas() {
       const calculation =
-        parseInt(this.valalkozasKpUtanMasodik.replace(/\s+/g, "")) - 5000;
+        parseInt(this.valalkozasBankiUtanMasodik.replace(/\s+/g, "")) - 5000;
       return isNaN(calculation) || calculation === Infinity
         ? Number(0).toLocaleString("hu-HU", { maximumFractionDigits: 0 })
         : calculation.toLocaleString("hu-HU", { maximumFractionDigits: 0 });
@@ -357,8 +252,7 @@ td {
   text-align: center;
 }
 
-#firstTable tr:nth-child(4) td:nth-child(1),
-#firstTable tr:nth-child(8) td:nth-child(1) {
+td:empty {
   border: none;
 }
 
@@ -366,26 +260,15 @@ td {
   text-align: start;
 }
 
-#secondTable tr td:nth-child(1) {
-  text-align: start;
-}
-
-#thirdTable tr:nth-child(5) td:nth-child(1) {
-  color: white;
+#firstTable tr:nth-child(1) td,
+#firstTable tr:nth-child(3) td:nth-child(1),
+#firstTable tr:nth-child(7) td:nth-child(1) {
+  border: none;
 }
 
 .calculator-container {
-  @apply flex flex-wrap bg-white w-7/12 h-auto mx-auto rounded-xl p-8;
+  @apply flex flex-wrap bg-white w-9/12 h-auto mx-auto rounded-xl p-8;
   margin-top: 5vh;
-}
-
-/* flex: 2 columns */
-.calculator-column-left {
-  @apply flex flex-col w-full pr-4;
-  margin-right: 1rem;
-}
-.calculator-column-right {
-  @apply flex flex-col w-full  rounded-xl;
 }
 
 /* Input Styles */
@@ -393,18 +276,18 @@ td {
   @apply w-full py-5 flex-col flex;
 }
 .calculator-input {
-  @apply h-7  rounded p-5 text-right primary-font very-dark-cyan-text font-semibold cursor-pointer;
+  @apply h-7  rounded p-5 text-center primary-font very-dark-cyan-text font-semibold cursor-pointer;
   background-color: var(--light-grayish-cyan-2);
   font-size: var(--form-font-size);
 }
 
 .megtakaritas {
-  @apply h-7  rounded p-5 text-right primary-font very-dark-cyan-text font-semibold ;
+  @apply h-7  rounded p-5 primary-font very-dark-cyan-text font-semibold;
   background-color: var(--light-grayish-cyan-2);
   font-size: var(--form-font-size);
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: center;
   color: darkgreen;
   background-color: #37cf38;
 }
@@ -430,7 +313,7 @@ td {
 }
 
 .label {
-  @apply text-left text-sm my-2 primary-font font-bold dark-grayish-cyan-1-text;
+  @apply text-center text-sm my-2 primary-font font-bold dark-grayish-cyan-1-text;
   font-family: Helvetica;
 }
 .label.error {
